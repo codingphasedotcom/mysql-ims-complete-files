@@ -1,4 +1,4 @@
-# Adonis fullstack application
+# Inventory Management System with Node JS, Adonis Js, React, MYSQL
 
 This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
 
