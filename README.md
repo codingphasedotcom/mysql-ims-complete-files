@@ -19,17 +19,19 @@ npm install to install
 
 * Make a copy of .env.example rename it to .env
 
-* Run adonis key:generate to generate the secret key
+* Generate the secret key
 ```bash
-npm install to install
+adonis key:generate
 ```
 
-* Run adonis migration:run to setup the database
+* Add all of your configuration to your database on the .env file
+
+* Run migrations
 ```bash
-npm install to install
+adonis migration:run
 ```
 
-* Run adonis serve --dev to run the application
+* Start your server up
 ```bash
-npm install to install
+adonis serve --dev
 ```
