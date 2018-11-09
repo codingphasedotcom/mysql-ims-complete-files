@@ -1,0 +1,93 @@
+@layout('layouts.admin')
+
+@section('breadcrumbs')
+<div class="breadcrumbs-area clearfix">
+    <h4 class="page-title pull-left">Products</h4>
+    <ul class="breadcrumbs pull-left">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/products">All Products</a></li>
+        <li><span>Edit {{product.title}}</span></li>
+    </ul>
+</div>
+@endsection
+
+
+@section('content')
+<div class="row">
+  <div class="col-12 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <form action="/admin/products/{{product.id}}?_method=PUT" method="post">
+          {{ csrfField() }}
+          <div class="form-group">
+            <label for="example-text-input" class="col-form-label">Title</label>
+            <input class="form-control" type="text" value="{{product.title}}" name="title" id="example-text-input" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="col-form-label">Image URL</label>
+            <input class="form-control" type="text" value="{{product.img_url}}" name="img_url" id="example-text-input" autocomplete="off">
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-6">
+              <label for="example-text-input" class="col-form-label">SKU</label>
+              <input class="form-control" type="text" value="{{product.sku}}" name="sku" id="example-text-input" autocomplete="off">
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label for="example-text-input" class="col-form-label">Material</label>
+              <input class="form-control" type="text" value="{{product.material}}" name="material" id="example-text-input" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-4">
+              <label for="example-text-input" class="col-form-label">Quantity</label>
+              <input class="form-control" type="text" value="{{product.qty}}" name="qty" id="example-text-input" autocomplete="off">
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <label for="example-text-input" class="col-form-label">Size</label>
+              <select class="custom-select" name="size">
+                <option value="7"
+                {{(product.size == 7) ? 'selected="selected"' : ''}}>7</option>
+                <option value="7.5"
+                {{(product.size == 7.5) ? 'selected="selected"' : ''}}>7.5</option>
+                <option value="8"
+                {{(product.size == 8) ? 'selected="selected"' : ''}}>8</option>
+                <option value="8.5"
+                {{(product.size == 8.5) ? 'selected="selected"' : ''}}>8.5</option>
+                <option value="9"
+                {{(product.size == 9) ? 'selected="selected"' : ''}}>9</option>
+                <option value="9.5"
+                {{(product.size == 9.5) ? 'selected="selected"' : ''}}>9.5</option>
+                <option value="10"
+                {{(product.size == 10) ? 'selected="selected"' : ''}}>10</option>
+                <option value="10.5"
+                {{(product.size == 10.5) ? 'selected="selected"' : ''}}>10.5</option>
+                <option value="11"
+                {{(product.size == 11) ? 'selected="selected"' : ''}}>11</option>
+              </select>
+            </div>
+
+
+
+            <div class="col-sm-12 col-md-4">
+              <label class="col-form-label">Brands</label>
+              <select class="custom-select" name="brand_id">
+                @each(brand in brands)
+                <option value="{{brand.id}}" {{(brand.id == product.brand_id) ? 'selected="selected"' : ''}}
+                 >{{brand.title}}</option>
+                @endeach
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="col-form-label">Description</label>
+            <textarea class="form-control" name="description" rows="8" cols="80">{{product.description}}</textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
